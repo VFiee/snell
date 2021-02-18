@@ -25,3 +25,10 @@ docker run --name snell -p 2021:2021 --restart always -d vyron/snell:latest
 ```bash
 docker logs snell
 ```
+
+## 添加配置
+
+```conf
+# View psk value through docker logs
+My-Snell-Server = snell,ip, port, psk= custom psk, obfs=tls, version=2, tfo=true
+```
