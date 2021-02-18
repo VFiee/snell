@@ -8,7 +8,7 @@ CONF="/etc/snell-server.conf"
 # reuse existing config when the container restarts
 
 start() {
-    echo "Snell-server is running with config:"
+    echo -e "[Snell Info]: Snell-server is running with config:"
     cat ${CONF}
 
     ${BIN} --version
@@ -16,24 +16,24 @@ start() {
 }
 
 if [ -f ${CONF} ]; then
-    echo "Configuration file already exists and will be deleted"
+    echo -e "[Snell Info]: Configuration file already exists and will be deleted \n"
     rm ${CONF}
 fi
 
 if [ -z ${PSK} ]; then
-    echo "PSK is not specified, automatically generated"
+    echo -e "[Snell Info]: PSK is not specified, automatically generated \n"
     PSK=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16)
-    echo "The automatically generated PSK is ${PSK}"
+    echo -e "[Snell Info]: The automatically generated PSK is ${PSK} \n"
 else
-    echo "Use specified PSK: ${PSK}"
+    echo -e "[Snell Info]: Use specified PSK: ${PSK} \n"
 fi
 
 if [ -z ${OBFS} ]; then
     OBFS=tls
-    echo "OBFS is not specified, the default is tls"
+    echo -e "[Snell Info]: OBFS is not specified, the default is tls \n"
 fi
 
-echo "Generating new config..."
+echo -e "Generating new config... \n"
 echo "[snell-server]" >> ${CONF}
 echo "listen = 0.0.0.0:${PORT}" >> ${CONF}
 echo "psk = ${PSK}" >> ${CONF}

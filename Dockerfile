@@ -6,6 +6,9 @@ ENV PORT=2021
 ENV PSK=
 ENV OBFS=tls
 COPY start.sh /usr/bin/
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache libstdc++
 RUN wget --no-check-certificate -O snell.zip https://github.com/surge-networks/snell/releases/download/$SENLL_VERSION/snell-server-$SENLL_VERSION-linux-amd64.zip && \
     unzip snell.zip && \
     rm -f snell.zip && \
