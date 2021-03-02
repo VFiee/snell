@@ -5,6 +5,7 @@ ENV LANG=C.UTF-8
 ENV PORT=2021
 ENV PSK=
 ENV OBFS=tls
+ENV REBUILD_CONFIG=off
 COPY start.sh /usr/bin/
 RUN apk update && \
     apk upgrade && \
