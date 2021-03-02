@@ -5,19 +5,16 @@
 BIN="/usr/bin/snell-server"
 CONF="/etc/snell-server.conf"
 IS_REBUILD_CONFIG="on"
-CONF_EXIST=-f $CONF
-
-# reuse existing config when the container restarts
 
 # clear console
 clear
 
 start() {
     echo -e "[Snell Info]: Snell-server is running with config:"
-    # cat ${CONF}
+    cat ${CONF}
 
-    # ${BIN} --version
-    # ${BIN} -c ${CONF}
+    ${BIN} --version
+    ${BIN} -c ${CONF}
 }
 
 buildConfig() {
@@ -49,10 +46,6 @@ if [[ $REBUILD_CONFIG = $IS_REBUILD_CONFIG || ! -f $CONF ]]; then
 	buildConfig
 else
    echo -e "[Snell Info]: Configuration file already exists and will be reuse \n"
-fi
-
-if [ -f $CONF ]; then
-	echo "配置文件已存在!"
 fi
 
 start
