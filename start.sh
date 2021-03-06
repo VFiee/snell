@@ -4,7 +4,7 @@
 
 BIN="/usr/bin/snell-server"
 CONF="/etc/snell-server.conf"
-IS_REBUILD_CONFIG="on"
+IS_REBUILD="on"
 
 # clear console
 clear
@@ -42,7 +42,7 @@ buildConfig() {
     echo "obfs = ${OBFS}" >> ${CONF}
 }
 
-if [[ $REBUILD_CONFIG = $IS_REBUILD_CONFIG || ! -f $CONF ]]; then
+if [[ $REBUILD = $IS_REBUILD || ! -f $CONF ]]; then
 	buildConfig
 else
    echo -e "[Snell Info]: Configuration file already exists and will be reuse \n"
